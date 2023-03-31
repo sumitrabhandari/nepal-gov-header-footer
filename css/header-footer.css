@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans Devanagari';
+}
+
+.topheader {
+    width: 100%;
+    background-color: #2E50AE;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.topheader-left-text {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.topheader-right-icon i {
+    font-size: 16px;
+    padding-left: 10px;
+    color: white;
+    gap: 20px;
+}
+
+.topheader-right-icon i:hover {
+    color: black;
+}
+
+.font-color {
+    color: white;
+}
+
+@media(max-width:700px) {
+    .topheader-right-icon {
+        display: none;
+    }
+
+    .topheader {
+        flex-wrap: wrap;
+        line-height: 20px;
+        padding: 10px 15px;
+    }
+}
+
+/*====================================================== header css==================================== */
+.header {
+    background-color: #ffff;
+  
+}
+
+.header-gov-logo img {
+    width: 80%;
+    height: auto;
+}
+
+.main-header-left-text p {
+    font-weight: 700;
+    color: #2E50AE;
+    font-size: 16px;
+    line-height: 5px;
+    font-family: 'Noto Sans Devanagari';
+}
+
+.nepal-flag img {
+    width: 50%;
+    height: auto;
+}
+
+.sub-container {
+    display: flex;
+    align-items: center;
+}
+
+.btn-group a {
+    color: white !important;
+}
+.office-name{color: red;}
+
+@media(max-width:750px) {
+    .header-gov-logo img {
+        width: 70%;
+        padding-left: 50px;
+    }
+
+    .office-name {
+        line-height: 15px !important;
+        padding: 0px 2px;
+    }
+
+    .nepal-flag {
+        display: none;
+    }
+.main-header-left-text{width: 100%;
+    margin-left: -50px;
+}
+}
+
+
+
+@media(max-width:450px) {
+    .nepal-flag img {
+        width: 10%;
+    }
+}
+
+
+/* ============================latest notice============================ */
+.newticker-label {
+    margin: 10px 0px;
+    cursor: pointer;
+}
+
+
+
+/* =============================================footer section======================================================== */
+
+.footer {
+    background-color: #2E50AE;
+}
+
+
+.footer-contact-content h4{
+    padding-top: 30px;
+    color: #ffff;
+    font-weight: 600;
+}
+
+.location-content,
+.contact-content,
+.email-content {
+    color: #ffff;
+    font-size: 26px;
+    line-height: 36px;
+    font-weight: 400;
+}
+
+.contact-content a,
+.email-content a {
+    color: #ffff;
+}
+
+.short-link-section h4,
+.outer-link-section h4 {
+    padding-top: 30px;
+    color: #ffff;
+    font-weight: 600;
+}
+.footer-social-icon{
+   padding:15px 0px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+.footer-facebook-icon, 
+.footer-twitter-icon
+{
+    width: 30px;
+    height: 30px;
+    background-color: #ffff;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 8px;
+    
+}
+.footer-facebook-icon:hover,
+.footer-twitter-icon:hover
+{
+    background-color: #062887;
+}
+.footer-social-icon a {
+    color: #2E50AE;
+}
+.footer-social-icon a:hover{
+    color: #ffff;
+}
+
+.short-link-section ul li,
+.outer-link-section ul li {
+    list-style: none;
+    font-size: 16px;
+    line-height: 29px;
+    font-weight: 400;
+    color: #c5c2c2;
+}
+
+.short-link-section ul li a,
+.outer-link-section ul li a {
+    text-decoration: none;
+    color: #ffff;
+    
+}
+
+.short-link-section ul li a:hover,
+.outer-link-section ul li a:hover {
+    color: #91acf7;
+}
+/* ===============================sshort link section scrollbar css===================================== */
+.short-link-section ul{
+    height: 150px;
+    overflow-y: scroll;
+   
+}
+.short-link-section ul::-webkit-scrollbar-thumb  {
+    background-color: #d3cfcf;
+    border-radius: 10px;
+}
+.short-link-sectionul::-webkit-scrollbar-track {
+    background-color: #2E50AE;
+    border-radius: 10px;
+   
+}
+.short-link-section ul::-webkit-scrollbar-thumb:hover {
+    background-color: #ffffff;
+}
+
+.short-link-section ul::-webkit-scrollbar {
+    width: 8px;
+    height: 10% !important;
+}
+
+
+/* ================================== footer outer link section scrollbar style==================================== */
+.outer-link-section ul{
+    height: 200px;
+    overflow-y: scroll;
+   
+}
+.outer-link-section ul::-webkit-scrollbar-thumb  {
+    background-color: #d3cfcf;
+    border-radius: 10px;
+}
+.outer-link-section ul::-webkit-scrollbar-track {
+    background-color: #2E50AE;
+    border-radius: 10px;
+   
+}
+.outer-link-section ul::-webkit-scrollbar-thumb:hover {
+    background-color: #ffffff;
+}
+
+.outer-link-section ul::-webkit-scrollbar {
+    width: 8px;
+    height: 10% !important;
+}
+@media(max-width:850px){
+    .footer-contact-content{margin-left: -40px;}
+}
+
+/* ============================================facebook page css================================================== */
+.facebook-page {
+    padding-top: 30px;
+     border: none;
+}
+
+
+/* ===============================================copyright section css ========================================================= */
+.copyright-section {
+    background-color: #042173;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #ffff;
+    line-height: 26px;
+}
+
+.powered-by a {
+    color: #ffff;
+    text-decoration: none;
+}
+
+@media(max-width:700px) {
+    .facebook-page {
+       overflow-x: hidden;}
+       .powered-by{display: none;}
+       .copyright-text{padding-bottom: 50px;}
+}

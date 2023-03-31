@@ -1,0 +1,303 @@
+
+/*window.onload = function() {
+    var objDiv = document.getElementById("box");
+    objDiv.scrollTop = objDiv.scrollHeight;
+}*/
+
+
+
+
+
+
+$(document).ready(function(){
+    $( ".chat-ma" ).toggleClass( "d-none" );
+    
+	var baseurl = $('#baseurl').val();
+    var locale = $('#locale').val();
+    var token = $('#_token').val();
+
+
+	$('#detail-content a').attr('target', '_blank');
+	$("#detail-content table").wrap('<div class="table-responsive"></div>');
+	$("#detail-content img").addClass("img-responsive");
+  $("#detail-content table").addClass('table table-hover table-striped table-bordered');
+
+	$('#btn-newsletter').click(function(event) {
+      $('#newslettermail-error').html('');
+      $('#newsletter-text-success').html('');
+      var formdata = $('#form-newsletter').serialize();
+      $.ajax({
+          url: baseurl+'/'+locale+'/newsletter',
+          type: "POST",
+          data: formdata
+      }).always(function(resp) {
+          if(resp.error==true){
+              if(resp.errors){
+                $('#newslettermail-error').html(resp.errors);
+              }
+          }
+          if(resp.error==false){
+              $('[name="newslettermail"]').val('');
+              $('#newslettermail-error').html('');
+              $("#newsletter-text-success").removeClass('d-none');
+              $("#newsletter-text-success").html(resp.message);
+          }
+        });
+    });
+
+
+
+
+
+
+
+
+$( ".chat-s" ).click(function() {
+	// console.log("ss");
+	 // $( ".d-none" ).show();
+
+    // var checkSession='<?=isset(Session::get('chatuser')['email'])?Session::get('chatuser')['email']:''?>';
+    // alert(checkSession);
+    // $( ".chat-ma" ).toggleClass( "d-none" );
+ 
+  //$( ".chat-ma" ).$();
+  // if(checkSession){
+  // }
+  
+});
+
+////////////////////////////////////////////////////////////////////////////////chatRegisterand Login Script /////////////////////////////////////////////////////////////////////////////
+
+$('.tbnchatLogingCheck').click(function(event) {
+
+        var chatformdata = $("#ChatLoginForm").serialize();
+      
+        $("#statuspage-msg").html("");
+        $("#email-error").html("");
+        $("#password-error").html("");
+
+        $.ajax({
+            url: baseurl+'/'+locale+'/logincheck',
+            type: "POST",
+            data: chatformdata
+        }).always(function(resp) {
+            console.log(resp)
+
+            if(resp.error==0){
+
+ location.reload(true);
+                  /*$("#home-tab").removeClass('active');
+                  $("#home").removeClass('show active');
+                  $("#chat-section-tab").addClass('active');
+                  $("#chat-section").addClass('show active');*/
+                 window.location.href = baseurl+'/'+locale+'/investorPlatform'; 
+
+            }if(resp.error==1){
+                   $("#statuspage-msg").html(resp.message);
+
+                    if(resp.errors.email){
+                    $('#email-error').html(resp.errors.email[0]);
+                    }
+                    if(resp.errors.password){
+                      $('#password-error').html(resp.errors.password[0]);
+                    }
+                    
+                }
+        });
+  });
+
+//////////////////////////////////////////////////////////////////////
+$('.tbnchatRegiseterSave').click(function(event) {
+
+        var chatformdata = $("#chatRegisterForm").serialize();
+      
+        $("#statuspage-msg").html("");
+        $("#emailr-error").html("");
+        $("#passwordr-error").html("");
+        $("#cpassword-error").html("");
+
+        $.ajax({
+            url: baseurl+'/'+locale+'/ChatUserRegisterSave',
+            type: "POST",
+            data: chatformdata
+        }).always(function(resp) {
+            console.log(resp)
+
+            if(resp.error==0){
+                $("#chatRegisterForm")[0].reset();
+                $("#statuspage-msg").removeClass('d-none');
+                $("#statuspage-msgregister").html(resp.message);
+
+                location.reload(true);
+            }if(resp.error==1){
+                    if(resp.errors.email){
+                    $('#emailr-error').html(resp.errors.email[0]);
+                    }
+                    if(resp.errors.password){
+                    $('#passwordr-error').html(resp.errors.password[0]);
+                    }
+                    if(resp.errors.password_confirmation){
+                    $('#cpassword-error').html(resp.errors.password_confirmation[0]);
+                    }
+                }
+        });
+  });
+
+  //////////////////////////////////////////
+$('.btnChatPage').click(function(event) {
+        var formdata = $("#chatmessageForm").serialize();
+        $.ajax({
+            url: baseurl+'/'+locale+'/updateChatMsg',
+            type: "POST",
+            data: formdata
+        }).always(function(resp) {
+            console.log(resp)
+
+            if(resp.error==1){
+                if(resp.errors.message){
+                  $('#chatmessage-error').html(resp.errors.message[0]);
+                }
+            }
+            if(resp.error==0){
+                $("#chatmessageForm")[0].reset();
+                location.reload(true);
+            }
+        });
+  });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $('#btncontactuspage').click(function(event) {
+        var formdata = $("#frmcontactuspage").serialize();
+        $("#subject-error").html("");
+        $("#name-error").html("");
+        $("#email-error").html("");
+        $("#phoneno-error").html("");
+        $("#address-error").html("");
+        $("#message-error").html("");
+        $("#statuspage-msg").html("");
+        $.ajax({
+            url: baseurl+'/'+locale+'/insertfeedback',
+            type: "POST",
+            data: formdata
+        }).always(function(resp) {
+            console.log(resp)
+            if(resp.error==1){
+                if(resp.errors.subject){
+                  if ((resp.errors.subject == undefined) && (resp.errors.subject == null)) {
+                    alert(resp.errors.subject);
+                    $(".text-danger").parent().addClass('ss');
+                  }
+                  
+                  $('#subject-error').html(resp.errors.subject[0]);
+                }
+                if(resp.errors.name){
+                  
+                  $('#name-error').html(resp.errors.name[0]);
+                  
+                }
+                if(resp.errors.email){
+                  $('#email-error').html(resp.errors.email[0]);
+                }
+                if(resp.errors.phoneno){
+                  $('#phoneno-error').html(resp.errors.phoneno[0]);
+                }
+                if(resp.errors.address){
+                  $('#address-error').html(resp.errors.address[0]);
+                }
+                if(resp.errors.message){
+                  $('#message-error').html(resp.errors.message[0]);
+                }
+            }
+            if(resp.error==0){
+                $("#frmcontactuspage")[0].reset();
+                $("#statuspage-msg").removeClass('d-none');
+                $("#statuspage-msg").html(resp.message);
+            }
+        });
+  });
+
+
+    $('.change-bandwidth').click(function(event) {
+      var id = $(this).attr('id');
+	console.log(id);
+      $.ajax({
+          type: "POST",
+          url: baseurl + "/"+locale+"/changebandwidth",
+          data:{id:id,_token: token},
+          dataType: 'json',
+      }).always(function(resp){
+      	location.reload();
+      });
+    });
+
+    $('#contrast-off').click(function(event) {
+      var id = 0;
+      $.ajax({
+          type: "POST",
+          url: baseurl + "/"+locale+"/changecontrast",
+          data:{id:id,_token: token},
+          dataType: 'json',
+      }).always(function(resp){
+        console.log(resp);
+        // location.reload();
+      });
+    });
+
+    $('#contrast-on').click(function(event) {
+      var id = 1;
+      $.ajax({
+          type: "POST",
+          url: baseurl + "/"+locale+"/changecontrast",
+          data:{id:id,_token: token},
+          dataType: 'json',
+      }).always(function(resp){
+        console.log(resp);
+        // location.reload();
+      });
+    });
+
+});
+
+
+
+
+//////////////////////////Chat login and Register script created by Yam limbu on 2020-06-10_14.12.55
+
+function myFunction() {
+
+  var x = document.getElementById("myDIV");
+  var y = document.getElementById("myDIVRegister");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+    y.style.display = "block";
+  }
+}
+
+function goLogin() {
+  var x = document.getElementById("myDIV");
+  var y = document.getElementById("myDIVRegister");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+    y.style.display = "none";
+  }
+}
